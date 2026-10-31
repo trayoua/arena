@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Info } from "lucide-react";
+import { isEmailConfigured } from "@/lib/order-emails";
 
 export const metadata: Metadata = {
   title: "Поверителност | DECUCARE",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
+  const emailsActive = isEmailConfigured();
   return (
     <main className="legal-page">
       <div className="legal-container">
@@ -21,8 +23,9 @@ export default function PrivacyPage() {
         <div className="legal-notice">
           <Info size={22} aria-hidden="true" />
           <p>
-            Формата вече записва заявки в защитена база данни. Имейл
-            известията и онлайн плащането още не са активни.
+            {emailsActive
+              ? "Формата записва заявки в защитена база данни и изпраща имейл потвърждения чрез Mailgun. Онлайн плащане не се предлага."
+              : "Формата вече записва заявки в защитена база данни. Имейл известията и онлайн плащането още не са активни."}
           </p>
         </div>
         <h2>Какви данни се записват?</h2>
@@ -38,6 +41,12 @@ export default function PrivacyPage() {
           (eu-central-1). Достъпът до тях е ограничен до защитената
           администрация на сайта. Не записваме данни за банкови карти и няма
           онлайн плащане.
+        </p>
+        <h2>Имейл известия</h2>
+        <p>
+          {emailsActive
+            ? "При получена поръчка или въпрос изпращаме служебно известие до собственика на сайта и потвърждение до клиента чрез доставчика Mailgun. Тези имейли са необходими за обработка на заявката и не са маркетингови съобщения."
+            : "Когато имейл известията бъдат активирани, при получена поръчка или въпрос ще изпращаме служебно известие до собственика на сайта и потвърждение до клиента чрез доставчика Mailgun. Тези имейли са необходими за обработка на заявката и не са маркетингови съобщения."}
         </p>
         <h2>Бисквитки и проследяване</h2>
         <p>

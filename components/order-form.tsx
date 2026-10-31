@@ -24,7 +24,13 @@ type OrderFormProps = {
 type SubmitState =
   | { status: "idle" }
   | { status: "submitting" }
-  | { status: "success"; reference: string; kind: Intent; duplicate: boolean }
+  | {
+      status: "success";
+      reference: string;
+      kind: Intent;
+      duplicate: boolean;
+      emails: { owner: string; customer: string } | null;
+    }
   | { status: "error"; message: string };
 
 export function OrderForm({
@@ -100,6 +106,7 @@ export function OrderForm({
         reference: data.reference,
         kind: data.kind,
         duplicate: Boolean(data.duplicate),
+        emails: data.emails ?? null,
       });
       form.reset();
       setQuantity(1);
@@ -344,7 +351,9 @@ export function OrderForm({
                 Номер за справка: <b>{submitState.reference}</b>.
                 {submitState.duplicate
                   ? " Тази заявка вече беше записана; не създадохме дубликат."
-                  : " Ще се свържем с вас за потвърждение. Това не е плащане или изпращане на пратка."}
+                  : submitState.emails?.customer === "sent"
+                    ? " Изпратихме потвърждение на вашия имейл. Ще се свържем с вас за детайлите. Това не е плащане или изпращане на пратка."
+                    : " Ще се свържем с вас за потвърждение. Това не е плащане или изпращане на пратка."}
               </p>
             </div>
           </div>

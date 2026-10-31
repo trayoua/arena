@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requireAdmin } from "@/lib/admin";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
+import { isEmailConfigured } from "@/lib/order-emails";
 import { AdminDashboard } from "./admin-dashboard";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default async function AdminPage() {
       supabase
         .from("orders")
         .select(
-          "id,reference,kind,product_name,product_volume,quantity,total_price_cents,currency,customer_name,customer_email,customer_phone,message,status,created_at",
+          "id,reference,kind,product_name,product_volume,quantity,total_price_cents,currency,customer_name,customer_email,customer_phone,message,status,created_at,owner_email_status,customer_email_status,email_last_error",
         )
         .order("created_at", { ascending: false })
         .limit(200),
@@ -36,5 +37,11 @@ export default async function AdminPage() {
     );
   }
 
-  return <AdminDashboard orders={orders ?? []} products={products ?? []} />;
+  return (
+    <AdminDashboard
+      orders={orders ?? []}
+      products={products ?? []}
+      emailConfigured={isEmailConfigured()}
+    />
+  );
 }

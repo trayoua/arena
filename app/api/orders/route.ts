@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { orderSubmissionSchema } from "@/lib/order-schema";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { getClientIp, hashForRateLimit, isSameOrigin } from "@/lib/security";
+import { dispatchOrderEmails } from "@/lib/order-emails";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -98,23 +99,32 @@ export async function POST(request: Request) {
   const { data: created, error } = await supabase
     .from("orders")
     .insert(insert)
-    .select("reference,kind")
+    .select("id,reference,kind")
     .single();
 
   if (error) {
     if (error.code === "23505") {
       const { data: existing, error: existingError } = await supabase
         .from("orders")
-        .select("reference,kind")
+        .select("id,reference,kind")
         .eq("idempotency_key", data.idempotencyKey)
         .maybeSingle();
       if (!existingError && existing) {
-        return NextResponse.json({ ok: true, reference: existing.reference, kind: existing.kind, duplicate: true });
+        const emails = await dispatchOrderEmails(existing.id).catch((emailError) => {
+          console.error("Duplicate order email retry failed", emailError);
+          return null;
+        });
+        return NextResponse.json({ ok: true, reference: existing.reference, kind: existing.kind, duplicate: true, emails });
       }
     }
     console.error("Order insert error", error);
     return NextResponse.json({ error: "Не успяхме да запишем заявката. Опитайте отново след малко." }, { status: 503 });
   }
 
-  return NextResponse.json({ ok: true, reference: created.reference, kind: created.kind });
+  const emails = await dispatchOrderEmails(created.id).catch((emailError) => {
+    console.error("Order email dispatch failed", emailError);
+    return null;
+  });
+
+  return NextResponse.json({ ok: true, reference: created.reference, kind: created.kind, emails });
 }

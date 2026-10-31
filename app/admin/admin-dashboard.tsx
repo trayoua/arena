@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut, RefreshCw } from "lucide-react";
 
+type EmailStatus = "pending" | "sending" | "sent" | "failed" | "skipped";
+
 type Order = {
   id: string;
   reference: string;
@@ -19,6 +21,9 @@ type Order = {
   message: string | null;
   status: "new" | "contacted" | "completed" | "cancelled";
   created_at: string;
+  owner_email_status: EmailStatus;
+  customer_email_status: EmailStatus;
+  email_last_error: string | null;
 };
 
 type Product = {
@@ -36,6 +41,14 @@ const statusLabels: Record<Order["status"], string> = {
   cancelled: "Отказана",
 };
 
+const emailStatusLabels: Record<EmailStatus, string> = {
+  pending: "изчаква",
+  sending: "изпраща се",
+  sent: "изпратен",
+  failed: "неуспешен",
+  skipped: "неактивен",
+};
+
 function formatMoney(cents: number | null, currency: string) {
   if (cents === null) return "Цена за потвърждение";
   return `${(cents / 100).toFixed(2)} ${currency === "EUR" ? "€" : currency}`;
@@ -49,7 +62,15 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
-export function AdminDashboard({ orders, products }: { orders: Order[]; products: Product[] }) {
+export function AdminDashboard({
+  orders,
+  products,
+  emailConfigured,
+}: {
+  orders: Order[];
+  products: Product[];
+  emailConfigured: boolean;
+}) {
   const router = useRouter();
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -77,6 +98,28 @@ export function AdminDashboard({ orders, products }: { orders: Order[]; products
       if (!response.ok) {
         const data = await response.json();
         setError(data.error || "Неуспешен запис.");
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError("Няма връзка. Опитайте отново.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function retryEmails(id: string) {
+    setBusyId(id);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/orders/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setError(data?.error || "Не успяхме да изпратим имейлите.");
         return;
       }
       router.refresh();
@@ -182,6 +225,12 @@ export function AdminDashboard({ orders, products }: { orders: Order[]; products
 
         <section className="admin-panel" aria-labelledby="orders-heading">
           <h2 id="orders-heading">Последни заявки ({orders.length})</h2>
+          {!emailConfigured && (
+            <p className="admin-note" role="status">
+              Имейл известията още не са активни. Заявките се записват сигурно, но
+              за изпращане на имейли трябва да се добавят настройките на Mailgun.
+            </p>
+          )}
           {orders.length === 0 ? (
             <p className="admin-note">Още няма записани заявки.</p>
           ) : (
@@ -239,6 +288,17 @@ export function AdminDashboard({ orders, products }: { orders: Order[]; products
                       </div>
                     )}
                   </dl>
+                  <div className="admin-email-row">
+                    <span className={`admin-email-badge email-${order.owner_email_status}`}>
+                      Известие до собственика: {emailStatusLabels[order.owner_email_status]}
+                    </span>
+                    <span className={`admin-email-badge email-${order.customer_email_status}`}>
+                      Потвърждение до клиента: {emailStatusLabels[order.customer_email_status]}
+                    </span>
+                    {order.email_last_error && (
+                      <span className="admin-email-error">{order.email_last_error}</span>
+                    )}
+                  </div>
                   <div className="admin-order-actions">
                     <label>
                       <span className="sr-only">Статус на {order.reference}</span>
@@ -254,6 +314,18 @@ export function AdminDashboard({ orders, products }: { orders: Order[]; products
                         ))}
                       </select>
                     </label>
+                    <button
+                      type="button"
+                      className="button button-secondary button-tiny"
+                      disabled={
+                        busyId === order.id ||
+                        (order.owner_email_status === "sent" &&
+                          order.customer_email_status === "sent")
+                      }
+                      onClick={() => retryEmails(order.id)}
+                    >
+                      {busyId === order.id ? "Изпращане…" : "Изпрати имейлите отново"}
+                    </button>
                     {busyId === order.id && <span>Запис…</span>}
                   </div>
                 </article>

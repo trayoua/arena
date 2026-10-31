@@ -33,7 +33,7 @@ export function Brand({ light = false }: { light?: boolean }) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ emailsActive = false }: { emailsActive?: boolean }) {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -52,7 +52,8 @@ export function SiteHeader() {
       <div className="preview-ribbon">
         <span className="status-dot" />
         Работен преглед <span className="ribbon-divider">/</span> Поръчките се
-        записват · Имейлите още не са активни
+        записват ·{" "}
+        {emailsActive ? "Имейлите са активни" : "Имейлите още не са активни"}
       </div>
       <header className="site-header">
         <div className="container header-inner">

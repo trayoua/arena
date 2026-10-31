@@ -2740,6 +2740,48 @@ summary::-webkit-details-marker {
   font-size: 10px;
   color: var(--muted);
 }
+.admin-email-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.admin-email-badge {
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 650;
+  background: #f4f1f7;
+  color: #5f5770;
+}
+.email-sent {
+  background: #eef5ec;
+  color: #3f5c38;
+}
+.email-failed {
+  background: #f9ecef;
+  color: #8a3a4a;
+}
+.email-sending,
+.email-pending {
+  background: #eaf1fb;
+  color: #35527c;
+}
+.email-skipped {
+  background: #f6f1f2;
+  color: #7c5a60;
+}
+.admin-email-error {
+  flex-basis: 100%;
+  font-size: 10px;
+  color: #8a3a4a;
+  overflow-wrap: anywhere;
+}
+.button-tiny {
+  padding: 8px 12px;
+  font-size: 11px;
+}
 @media (max-width: 760px) {
   .admin-header {
     flex-direction: column;
