@@ -90,6 +90,14 @@ try {
       "decucare-bathroom",
     ),
   );
+  const displayedPrice = await page.locator(".product-price strong").textContent();
+  assert.match(displayedPrice ?? "", /^\d+\.\d{2} €$/, "Product price should be visible");
+  assert.ok(
+    (await page.locator(".product-price small").textContent())?.includes(
+      "не е онлайн плащане",
+    ),
+    "Price note should clarify that the request is not an online payment",
+  );
   // Next.js lazy-loads below-the-fold photographs; visit each before checking it.
   for (const image of await page.locator("img").all()) {
     await image.scrollIntoViewIfNeeded();

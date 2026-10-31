@@ -227,7 +227,11 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                     ? "Очаква потвърждение"
                     : `${product.price.toFixed(2)} €`}
                 </strong>
-                <small>Вашата цена ще бъде добавена преди публикуване.</small>
+                <small>
+                  {product.price === null
+                    ? "Вашата цена ще бъде добавена преди публикуване."
+                    : "Цена за 1 брой DECUCARE, 150 мл. Заявката не е онлайн плащане."}
+                </small>
               </div>
               <div className="product-actions">
                 <button className="button" onClick={selectProduct}>
