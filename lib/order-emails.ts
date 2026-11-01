@@ -1,5 +1,6 @@
 import "server-only";
 import { z } from "zod";
+import { business, deliveryPayment } from "@/lib/content";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 export type EmailStatus = "pending" | "sending" | "sent" | "failed" | "skipped";
@@ -104,6 +105,9 @@ function buildOwnerEmail(order: OrderEmailRow) {
     ["Телефон", order.customer_phone || "—"],
     ["Артикул", productSummary(order)],
     ["Общо", formatMoney(order.total_price_cents, order.currency)],
+    ...(isOrder
+      ? ([["Плащане", `${deliveryPayment.method} при получаване`]] as Array<[string, string]>)
+      : []),
     ["Съобщение", order.message || "—"],
   ];
   const text = [
@@ -153,9 +157,10 @@ function buildCustomerEmail(order: OrderEmailRow) {
     summary,
     "",
     isOrder
-      ? "Това съобщение потвърждава само получаването на заявката. Все още няма онлайн плащане и поръчката не е означена като платена или изпратена. Ще се свържем с вас, за да потвърдим детайлите."
+      ? `Това съобщение потвърждава само получаването на заявката. Няма онлайн плащане. Плащането е с ${deliveryPayment.method.toLowerCase()} при получаване: ${deliveryPayment.description} Поръчката все още не е означена като платена или изпратена. Ще се свържем с вас, за да потвърдим детайлите.`
       : "Ще се свържем с вас с отговор възможно най-скоро.",
     "",
+    `Телефон за връзка: ${business.phone}`,
     `Може да разгледате продукта отново тук: ${url}`,
     "",
     "С уважение,",
@@ -180,9 +185,10 @@ function buildCustomerEmail(order: OrderEmailRow) {
       </p>
       <p>${
         isOrder
-          ? "Това съобщение потвърждава само получаването на заявката. Все още няма онлайн плащане и поръчката не е означена като платена или изпратена. Ще се свържем с вас, за да потвърдим детайлите."
+          ? `Това съобщение потвърждава само получаването на заявката. Няма онлайн плащане. Плащането е с <strong>${escapeHtml(deliveryPayment.method.toLowerCase())}</strong> при получаване: ${escapeHtml(deliveryPayment.description)} Поръчката все още не е означена като платена или изпратена. Ще се свържем с вас, за да потвърдим детайлите.`
           : "Ще се свържем с вас с отговор възможно най-скоро."
       }</p>
+      <p>Телефон за връзка: <a href="${escapeHtml(business.phoneHref)}" style="color:#5b3e8f">${escapeHtml(business.phone)}</a></p>
       <p><a href="${escapeHtml(url)}" style="color:#5b3e8f">Към сайта на DECUCARE</a></p>
       <p style="color:#6f6880">С уважение,<br />Екипът на DECUCARE</p>
     </div>`;

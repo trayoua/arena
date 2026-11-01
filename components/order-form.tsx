@@ -9,7 +9,7 @@ import {
   Plus,
   ShoppingBag,
 } from "lucide-react";
-import type { ProductInfo } from "@/lib/content";
+import { deliveryPayment, type ProductInfo } from "@/lib/content";
 import { formatMoney, toPriceCents } from "@/lib/money";
 
 export type Intent = "order" | "question";
@@ -189,8 +189,9 @@ export function OrderForm({
       <div className="form-preview-note" id="order-note">
         <Info size={17} aria-hidden="true" />
         <span>
-          Заявката се записва сигурно. Няма онлайн плащане; ще се свържем с вас
-          за потвърждение.
+          Заявката се записва сигурно. Няма онлайн плащане; плащането е с{" "}
+          {deliveryPayment.method.toLowerCase()} при получаване. Ще се свържем
+          с вас за потвърждение.
         </span>
       </div>
       <form
@@ -358,7 +359,7 @@ export function OrderForm({
           >
             <div className="order-summary-heading">
               <h4 id="order-summary-title">Вашата поръчка</h4>
-              <span>Без онлайн плащане</span>
+              <span>{deliveryPayment.method}</span>
             </div>
             {hasSelectedProduct ? (
               <dl className="order-summary-lines">
@@ -398,8 +399,8 @@ export function OrderForm({
             <p className="order-summary-note">
               {unitPriceCents === null
                 ? "Цената и доставката ще бъдат уточнени при потвърждение на заявката."
-                : "Доставката не е включена и ще бъде уточнена при потвърждение на заявката."}{" "}
-              Няма онлайн плащане.
+                : deliveryPayment.note}{" "}
+              Плащане в брой или с карта при получаване.
             </p>
           </section>
         )}
@@ -470,7 +471,8 @@ export function OrderForm({
           </div>
         )}
         <p className="form-footnote">
-          Полетата със * са задължителни. Няма онлайн плащане.
+          Полетата със * са задължителни. Няма онлайн плащане; плащане при
+          получаване.
         </p>
       </form>
     </div>

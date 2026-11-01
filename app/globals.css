@@ -943,11 +943,11 @@ summary::-webkit-details-marker {
   border-top: 1px solid #dbcee3;
 }
 
-/* Testimonials, explicitly marked as illustrative. */
+/* Owner-provided customer testimonials. */
 .reviews-section {
   background: var(--white);
 }
-.example-badge {
+.reviews-badge {
   font-size: 12px;
   letter-spacing: 1.2px;
   font-weight: 650;
@@ -1010,7 +1010,7 @@ summary::-webkit-details-marker {
   align-items: center;
   justify-content: center;
   background: #ece2f2;
-  color: #805c92;
+  color: #6d4a7e;
   font-family: var(--serif);
   font-size: 21px;
   border-radius: 50%;
@@ -1128,16 +1128,63 @@ summary::-webkit-details-marker {
   font-size: 15px;
   font-weight: 500;
 }
-.order-contact button {
-  display: flex;
+.order-contact button,
+.order-contact a {
+  display: inline-flex;
   align-items: center;
   gap: 7px;
   color: #e0cde9;
   background: none;
-  font-size: 14px;
+  font-size: 15px;
   padding: 5px 0;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.order-contact + .order-contact {
+  margin-top: 18px;
+  padding-top: 18px;
+}
+.order-terms {
+  max-width: 390px;
+  border-top: 1px solid #ffffff26;
+  padding-top: 24px;
+  margin-bottom: 24px;
+}
+.order-terms h3 {
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.order-terms p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #e0d2e6;
+}
+.order-terms strong {
+  color: #fff;
+  font-weight: 650;
+}
+.courier-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 14px 0;
+}
+.courier-list li {
+  border: 1px solid #9b7ea9;
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 13px;
+  color: #efe3f5;
+  background: #ffffff0d;
+}
+.order-terms-note {
+  font-size: 14px;
+  color: #d6c6df;
 }
 .form-card {
   background: var(--white);
@@ -1624,22 +1671,17 @@ summary::-webkit-details-marker {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.footer-placeholder {
-  font-size: 14px;
-  color: #6c5977;
-}
-.social-placeholder {
-  display: flex;
+.social-link {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 600;
   color: #70577e;
 }
-.social-placeholder p {
-  font-size: 14px;
-}
-.social-placeholder small {
-  font-size: 13px;
-  color: #6c5977;
+.social-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .back-top {
   margin-top: 11px;
@@ -1663,6 +1705,11 @@ summary::-webkit-details-marker {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.footer-manufacturer {
+  font-size: 14px;
+  color: #6b5677;
+  padding-top: 4px;
 }
 .footer-preview {
   font-size: 13px;
@@ -2276,7 +2323,7 @@ summary::-webkit-details-marker {
     font-size: 14px;
     margin-top: 24px;
   }
-  .example-badge {
+  .reviews-badge {
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 0;
@@ -2326,6 +2373,18 @@ summary::-webkit-details-marker {
   }
   .order-contact {
     max-width: 100%;
+  }
+  .order-terms {
+    max-width: 100%;
+  }
+  .order-terms h3 {
+    font-size: 26px;
+  }
+  .order-terms p {
+    font-size: 16px;
+  }
+  .order-terms-note {
+    font-size: 14px;
   }
   .form-card {
     padding: 25px 23px;
@@ -2491,6 +2550,10 @@ summary::-webkit-details-marker {
   }
   .footer-bottom > span {
     margin-left: auto;
+  }
+  .footer-manufacturer {
+    font-size: 14px;
+    line-height: 1.7;
   }
   .footer-preview {
     font-size: 14px;

@@ -51,8 +51,8 @@ export function SiteHeader({ emailsActive = false }: { emailsActive?: boolean })
     <>
       <div className="preview-ribbon">
         <span className="status-dot" />
-        Работен преглед <span className="ribbon-divider">/</span> Поръчките се
-        записват ·{" "}
+        Поръчки и въпроси <span className="ribbon-divider">/</span> Наложен
+        платеж ·{" "}
         {emailsActive ? "Имейлите са активни" : "Имейлите още не са активни"}
       </div>
       <header className="site-header">

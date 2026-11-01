@@ -83,7 +83,40 @@ try {
     );
   }
   assert.equal(await page.locator(".review-card").count(), 3);
+  const reviewText = await page.locator("#reviews").innerText();
+  for (const expected of [
+    "Мария Петкова",
+    "Димитър Генов",
+    "Елена Георгиева",
+    "Още след първото нанасяне усетих разлика.",
+    "Много съм доволен.",
+    "Бих поръчала отново.",
+  ]) {
+    assert.ok(reviewText.includes(expected), `Missing review content: ${expected}`);
+  }
+  assert.ok(!/ПРИМЕРНИ|Примерен текст|Илюстративен профил/.test(reviewText));
   assert.equal(await page.locator(".retailer-card").count(), 7);
+  const facebookLinks = page.locator('a[href="https://www.facebook.com/profile.php?id=61583186613579"]');
+  assert.equal(await facebookLinks.count(), 1);
+  assert.equal(await page.locator(".social-link").count(), 1);
+  assert.ok((await page.locator(".site-footer").innerText()).includes("Facebook"));
+  assert.ok(!/Instagram|YouTube|TikTok/.test(await page.locator(".site-footer").innerText()));
+  assert.ok((await page.locator('a[href="tel:+359899822992"]').count()) >= 2);
+  const orderCopyText = await page.locator(".order-copy").innerText();
+  for (const expected of [
+    "Доставка и плащане",
+    "Наложен платеж",
+    "Плащане в брой или с карта при получаване",
+    "Speedy",
+    "Econt",
+    "Sameday/easybox",
+    "BOX NOW",
+    "+359 89 982 2992",
+  ]) {
+    assert.ok(orderCopyText.includes(expected), `Missing delivery/contact content: ${expected}`);
+  }
+  assert.ok((await page.locator(".site-footer").innerText()).includes("„Гален Фарма“ ООД за „А БРАНДС“ ЕООД"));
+  assert.equal((await page.locator(".order-summary-heading span").innerText()).trim(), "Наложен платеж");
   assert.ok(await page.locator(".site-header .brand-mark").isVisible());
   assert.equal(await page.locator(".header-order svg").count(), 0);
   assert.equal(await page.locator(".product-actions .button svg").count(), 0);
@@ -341,7 +374,7 @@ try {
     "No unexpected personal-data submissions",
   );
   console.log(
-    "PASS: owner photos/logo, no order-button arrows, sections, images, quantity, live order total, preselection, mocked order/question submission, disclosures, mobile navigation, privacy.",
+    "PASS: owner photos/logo, no order-button arrows, sections, images, quantity, live order total, preselection, mocked order/question submission, real reviews, delivery/payment terms, phone/Facebook, manufacturer, mobile navigation, privacy.",
   );
   console.log(
     "Accessibility violation counts:",

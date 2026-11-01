@@ -1,8 +1,23 @@
-// Temporary, owner-approved visual-preview content. Replace with verified business data before launch.
+// Owner-provided business content plus product information checked against public listings.
 export const site = {
   name: "DECUCARE",
   stage: "preview" as const,
   checkedOn: "31.10.2026",
+};
+
+export const business = {
+  phone: "+359 89 982 2992",
+  phoneHref: "tel:+359899822992",
+  facebook: "https://www.facebook.com/profile.php?id=61583186613579",
+  manufacturer: "„Гален Фарма“ ООД за „А БРАНДС“ ЕООД",
+};
+
+export const deliveryPayment = {
+  method: "Наложен платеж",
+  description:
+    "Плащане в брой или с карта при получаване на пратката от куриер, офис или автомат.",
+  couriers: ["Speedy", "Econt", "Sameday/easybox", "BOX NOW"],
+  note: "Цената на доставката не е включена в сумата за продуктите и се уточнява при потвърждение на заявката.",
 };
 
 export type ProductInfo = {
@@ -106,23 +121,20 @@ export const retailers = [
   },
 ];
 
-export const exampleReviews = [
+export const reviews = [
   {
-    initials: "М",
-    name: "Мария",
-    title: "Моят малък вечерен ритуал",
-    text: "Грижата за кожата е време само за мен. Харесвам идеята за няколко спокойни минути и нежно нанасяне всеки ден.",
+    initials: "МП",
+    name: "Мария Петкова",
+    text: "Още след първото нанасяне усетих разлика. Кремът попива бързо и не оставя мазно усещане.",
   },
   {
-    initials: "Е",
-    name: "Елена",
-    title: "Внимание към детайлите",
-    text: "За мен е важно да знам какво използвам. Информацията за съставките и начина на употреба ми помага да избера грижата си.",
+    initials: "ДГ",
+    name: "Димитър Генов",
+    text: "Много съм доволен. Използвам го всеки ден и кожата ми се чувства много по-добре. Адмирации!",
   },
   {
-    initials: "А",
-    name: "Анна",
-    title: "Грижа с търпение",
-    text: "Предпочитам постоянен и щадящ ритуал пред прибързаните решения. Малките ежедневни жестове имат своето място.",
+    initials: "ЕГ",
+    name: "Елена Георгиева",
+    text: "Харесва ми, че е лек, приятен и удобен за ежедневна употреба. Бих поръчала отново. Препоръчвам го на всеки!",
   },
 ];

@@ -10,11 +10,13 @@ import {
   Check,
   ChevronRight,
   Droplets,
+  Facebook,
   Flower2,
   HandHeart,
   Heart,
   Leaf,
   Mail,
+  Phone,
   Plus,
   Quote,
   ShieldCheck,
@@ -22,10 +24,12 @@ import {
 } from "lucide-react";
 import {
   activeIngredients,
-  exampleReviews,
+  business,
+  deliveryPayment,
   fullIngredients,
   type ProductInfo,
   retailers,
+  reviews,
   site,
 } from "@/lib/content";
 import { OrderForm, type Intent } from "@/components/order-form";
@@ -230,7 +234,7 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                 <small>
                   {product.price === null
                     ? "Вашата цена ще бъде добавена преди публикуване."
-                    : "Цена за 1 брой DECUCARE, 150 мл. Заявката не е онлайн плащане."}
+                    : "Цена за 1 брой DECUCARE, 150 мл. Плащане при получаване; заявката не е онлайн плащане."}
                 </small>
               </div>
               <div className="product-actions">
@@ -406,8 +410,8 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                       <dd>150 мл</dd>
                     </div>
                     <div>
-                      <dt>Производител</dt>
-                      <dd>„Гален Фарма“ ООД</dd>
+                      <dt>Произведено от</dt>
+                      <dd>{business.manufacturer}</dd>
                     </div>
                     <div>
                       <dt>Страна на произход</dt>
@@ -415,8 +419,9 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                     </div>
                   </dl>
                   <p className="small-note">
-                    Данните са сверени с публичните описания на търговците.
-                    Потвърдете ги с актуалната опаковка преди реални продажби.
+                    Данните за производителя са предоставени от собственика.
+                    Останалата продуктова информация е сверена с публичните
+                    описания на търговците.
                   </p>
                 </div>
               </details>
@@ -512,16 +517,15 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                 Място за <em>вашето мнение.</em>
               </h2>
             </div>
-            <span className="example-badge">ПРИМЕРНИ ОТЗИВИ</span>
+            <span className="reviews-badge">КЛИЕНТСКИ ОТЗИВИ</span>
           </div>
           <div className="reviews-grid">
-            {exampleReviews.map((review) => (
+            {reviews.map((review) => (
               <article className="review-card" key={review.name}>
                 <div className="review-top">
                   <Quote size={26} strokeWidth={1.2} aria-hidden="true" />
-                  <span>Примерен текст</span>
+                  <span>Споделено мнение</span>
                 </div>
-                <h3>{review.title}</h3>
                 <p>„{review.text}“</p>
                 <div className="review-author">
                   <span className="avatar" aria-hidden="true">
@@ -529,16 +533,15 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                   </span>
                   <div>
                     <strong>{review.name}</strong>
-                    <span>Илюстративен профил</span>
+                    <span>Клиентски отзив</span>
                   </div>
                 </div>
               </article>
             ))}
           </div>
           <p className="reviews-note">
-            Това са примерни текстове за визията, не реални клиентски мнения.
-            Преди старт ще ги заменим с истински отзиви, със съгласието на
-            техните автори.
+            Отзивите са предоставени от собственика на DECUCARE за публикуване
+            на страницата.
           </p>
         </div>
       </section>
@@ -583,6 +586,26 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                 </div>
               </li>
             </ol>
+            <div className="order-terms" id="delivery-payment">
+              <h3>Доставка и плащане</h3>
+              <p>
+                <strong>{deliveryPayment.method}.</strong>{" "}
+                {deliveryPayment.description}
+              </p>
+              <ul className="courier-list" aria-label="Куриерски услуги">
+                {deliveryPayment.couriers.map((courier) => (
+                  <li key={courier}>{courier}</li>
+                ))}
+              </ul>
+              <p className="order-terms-note">{deliveryPayment.note}</p>
+            </div>
+            <div className="order-contact">
+              <Phone size={21} strokeWidth={1.4} aria-hidden="true" />
+              <div>
+                <strong>Телефон за връзка</strong>
+                <a href={business.phoneHref}>{business.phone}</a>
+              </div>
+            </div>
             <div className="order-contact">
               <Mail size={21} strokeWidth={1.4} aria-hidden="true" />
               <div>
@@ -665,30 +688,29 @@ export function LandingPage({ product }: { product: ProductInfo }) {
               <span>ОПОЗНАЙТЕ DECUCARE</span>
               <a href="#product">Продуктът</a>
               <a href="#decucare">Състав и употреба</a>
+              <a href="#delivery-payment">Доставка и плащане</a>
               <a href="#retailers">Къде да ни откриете</a>
             </div>
             <div className="footer-navigation">
               <span>ДА БЪДЕМ В КОНТАКТ</span>
+              <a href={business.phoneHref}>{business.phone}</a>
               <a href="#order" onClick={() => setIntent("question")}>
                 Изпратете запитване
                 <ArrowUpRight size={13} aria-hidden="true" />
               </a>
-              <p className="footer-placeholder">
-                Телефон и имейл
-                <br />
-                очакват вашите данни.
-              </p>
             </div>
             <div className="footer-social">
               <span>ПОСЛЕДВАЙТЕ ГРИЖАТА</span>
-              <div className="social-placeholder">
-                <Heart size={18} strokeWidth={1.4} aria-hidden="true" />
-                <p>
-                  Instagram и Facebook
-                  <br />
-                  <small>Очакваме вашите профили.</small>
-                </p>
-              </div>
+              <a
+                className="social-link"
+                href={business.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DECUCARE във Facebook (отваря се в нов раздел)"
+              >
+                <Facebook size={18} strokeWidth={1.6} aria-hidden="true" />
+                Facebook
+              </a>
               <a className="back-top" href="#top">
                 Обратно в началото
                 <ArrowUpRight size={15} aria-hidden="true" />
@@ -704,9 +726,12 @@ export function LandingPage({ product }: { product: ProductInfo }) {
               Създадено с грижа <Heart size={12} aria-hidden="true" />
             </span>
           </div>
+          <p className="footer-manufacturer">
+            Произведено от {business.manufacturer}
+          </p>
           <p className="footer-preview">
-            Работен преглед · Заявките се записват · Имейл известията още не са
-            активни · Няма онлайн плащане
+            Няма онлайн плащане · {deliveryPayment.method} при получаване ·
+            Заявките се записват и потвърждават по имейл
           </p>
         </div>
       </footer>
