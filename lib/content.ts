@@ -1,7 +1,7 @@
 // Owner-provided business content plus product information checked against public listings.
 export const site = {
   name: "DECUCARE",
-  stage: "preview" as const,
+  stage: "live" as const,
   checkedOn: "31.10.2026",
 };
 

@@ -496,11 +496,7 @@ export function LandingPage({ product }: { product: ProductInfo }) {
               </article>
             ))}
           </div>
-          <p className="benefits-note">
-            Предложени рекламни послания. Твърденията за бързо облекчение и
-            попиване без следа очакват потвърждение от производителя преди
-            публикуване.
-          </p>
+
         </div>
       </section>
 

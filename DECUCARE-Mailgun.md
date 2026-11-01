@@ -20,7 +20,7 @@
 - `MAILGUN_FROM` — `DECUCARE <porachki@mail.shopzon.eu>`.
 - `MAILGUN_REGION` — `eu` (домейнът е в EU региона на Mailgun).
 
-Production имейлите са конфигурирани за реалния домейн `mail.shopzon.eu`, без сайтът да се мести от `https://decucare-arena.vercel.app`.
+Production имейлите са конфигурирани за реалния домейн `mail.shopzon.eu`. Основният адрес на сайта е `https://decucare.vercel.app`.
 
 ### Preview / development
 
@@ -58,7 +58,7 @@ Production имейлите са конфигурирани за реалния 
 
 ## За production имейли
 
-За реални поръчки е нужен домейн, който собственикът контролира, например поддомейн `mg.example.com` или друг избран поддомейн. Това **не изисква** сайтът да се мести от `https://decucare-arena.vercel.app`.
+За реални поръчки е нужен домейн, който собственикът контролира, например поддомейн `mg.example.com` или друг избран поддомейн. Това е отделно от адреса на сайта `https://decucare.vercel.app`.
 
 Обичайни стъпки:
 

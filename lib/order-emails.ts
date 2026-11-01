@@ -87,7 +87,7 @@ function productSummary(order: OrderEmailRow) {
 }
 
 function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "https://decucare-arena.vercel.app").replace(/\/$/, "");
+  return (process.env.NEXT_PUBLIC_SITE_URL || "https://decucare.vercel.app").replace(/\/$/, "");
 }
 
 function buildOwnerEmail(order: OrderEmailRow) {

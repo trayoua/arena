@@ -33,7 +33,7 @@ export function Brand({ light = false }: { light?: boolean }) {
   );
 }
 
-export function SiteHeader({ emailsActive = false }: { emailsActive?: boolean }) {
+export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -49,12 +49,6 @@ export function SiteHeader({ emailsActive = false }: { emailsActive?: boolean })
 
   return (
     <>
-      <div className="preview-ribbon">
-        <span className="status-dot" />
-        Поръчки и въпроси <span className="ribbon-divider">/</span> Наложен
-        платеж ·{" "}
-        {emailsActive ? "Имейлите са активни" : "Имейлите още не са активни"}
-      </div>
       <header className="site-header">
         <div className="container header-inner">
           <Brand />
