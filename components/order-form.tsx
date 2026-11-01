@@ -10,8 +10,32 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import type { ProductInfo } from "@/lib/content";
+import { formatMoney, toPriceCents } from "@/lib/money";
 
 export type Intent = "order" | "question";
+
+type OrderSummary = {
+  quantity: number;
+  totalPriceCents: number | null;
+  currency: string;
+};
+
+function isOrderSummary(value: unknown): value is OrderSummary {
+  if (typeof value !== "object" || value === null) return false;
+  const summary = value as Record<string, unknown>;
+  return (
+    typeof summary.quantity === "number" &&
+    Number.isInteger(summary.quantity) &&
+    summary.quantity >= 1 &&
+    summary.quantity <= 20 &&
+    (summary.totalPriceCents === null ||
+      (typeof summary.totalPriceCents === "number" &&
+        Number.isInteger(summary.totalPriceCents) &&
+        summary.totalPriceCents >= 0)) &&
+    typeof summary.currency === "string" &&
+    summary.currency.length > 0
+  );
+}
 
 type OrderFormProps = {
   product: ProductInfo;
@@ -30,6 +54,7 @@ type SubmitState =
       kind: Intent;
       duplicate: boolean;
       emails: { owner: string; customer: string } | null;
+      summary: OrderSummary | null;
     }
   | { status: "error"; message: string };
 
@@ -47,6 +72,11 @@ export function OrderForm({
   const idempotencyKey = useRef<string>("");
   const isOrder = intent === "order";
   const busy = submitState.status === "submitting";
+  const hasSelectedProduct = selectedProduct === product.id;
+  const unitPriceCents = toPriceCents(product.price);
+  const totalPriceCents =
+    unitPriceCents === null ? null : unitPriceCents * quantity;
+  const unitPriceLabel = formatMoney(unitPriceCents, product.currency);
 
   useEffect(() => {
     formStartedAt.current = Date.now();
@@ -107,11 +137,12 @@ export function OrderForm({
         kind: data.kind,
         duplicate: Boolean(data.duplicate),
         emails: data.emails ?? null,
+        summary: isOrderSummary(data.summary) ? data.summary : null,
       });
       form.reset();
       setQuantity(1);
       setMessageLength(0);
-      setSelectedProduct("");
+      setSelectedProduct(product.id);
       resetSubmissionGuards();
     } catch {
       setSubmitState({
@@ -245,7 +276,7 @@ export function OrderForm({
             >
               <option value="">Изберете продукт</option>
               <option value={product.id}>
-                {product.name} · {product.volume}
+                {product.name} · {product.volume} · {unitPriceLabel}
               </option>
             </select>
           </div>
@@ -292,7 +323,7 @@ export function OrderForm({
             </div>
           )}
         </div>
-        {isOrder && selectedProduct === product.id && (
+        {isOrder && hasSelectedProduct && (
           <p className="selected-product-note" role="status">
             <Check size={14} aria-hidden="true" />
             {product.name} · {product.volume} е избран
@@ -320,6 +351,58 @@ export function OrderForm({
           />
           <span className="character-count">{messageLength} / 2000</span>
         </div>
+        {isOrder && (
+          <section
+            className={`order-summary${hasSelectedProduct ? "" : " order-summary-empty"}`}
+            aria-labelledby="order-summary-title"
+          >
+            <div className="order-summary-heading">
+              <h4 id="order-summary-title">Вашата поръчка</h4>
+              <span>Без онлайн плащане</span>
+            </div>
+            {hasSelectedProduct ? (
+              <dl className="order-summary-lines">
+                <div className="order-summary-line order-summary-product">
+                  <dt>
+                    <span>
+                      {product.name} · {product.volume}
+                    </span>
+                    <small>
+                      {quantity} бр. · {unitPriceLabel} / бр.
+                    </small>
+                  </dt>
+                  <dd data-testid="order-product-total">
+                    {formatMoney(totalPriceCents, product.currency)}
+                  </dd>
+                </div>
+                <div className="order-summary-line">
+                  <dt>Доставка</dt>
+                  <dd className="order-summary-delivery">Не е включена</dd>
+                </div>
+                <div className="order-summary-line order-summary-total">
+                  <dt>Общо за продуктите</dt>
+                  <dd
+                    data-testid="order-total"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  >
+                    {formatMoney(totalPriceCents, product.currency)}
+                  </dd>
+                </div>
+              </dl>
+            ) : (
+              <p className="order-summary-placeholder">
+                Изберете продукт и количество, за да видите сумата.
+              </p>
+            )}
+            <p className="order-summary-note">
+              {unitPriceCents === null
+                ? "Цената и доставката ще бъдат уточнени при потвърждение на заявката."
+                : "Доставката не е включена и ще бъде уточнена при потвърждение на заявката."}{" "}
+              Няма онлайн плащане.
+            </p>
+          </section>
+        )}
         <label className="consent-label">
           <input type="checkbox" name="consent" required disabled={busy} />
           <span>
@@ -355,6 +438,25 @@ export function OrderForm({
                     ? " Изпратихме потвърждение на вашия имейл. Ще се свържем с вас за детайлите. Това не е плащане или изпращане на пратка."
                     : " Ще се свържем с вас за потвърждение. Това не е плащане или изпращане на пратка."}
               </p>
+              {submitState.kind === "order" && submitState.summary && (
+                <p className="form-result-summary" data-testid="success-total">
+                  {submitState.summary.totalPriceCents === null ? (
+                    "Цената и доставката ще бъдат уточнени при потвърждение."
+                  ) : (
+                    <>
+                      Записана сума за продуктите:{" "}
+                      <b>
+                        {formatMoney(
+                          submitState.summary.totalPriceCents,
+                          submitState.summary.currency,
+                        )}
+                      </b>{" "}
+                      ({submitState.summary.quantity} бр.). Доставката не е
+                      включена.
+                    </>
+                  )}
+                </p>
+              )}
             </div>
           </div>
         )}

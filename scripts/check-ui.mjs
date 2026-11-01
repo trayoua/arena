@@ -38,10 +38,22 @@ const orderPayloads = [];
 await context.route("**/api/orders", async (route) => {
   const payload = route.request().postDataJSON();
   orderPayloads.push(payload);
+  const isOrder = payload.kind === "order";
   await route.fulfill({
     status: 200,
     contentType: "application/json",
-    body: JSON.stringify({ ok: true, reference: "DC-TEST-1001", kind: payload.kind }),
+    body: JSON.stringify({
+      ok: true,
+      reference: "DC-TEST-1001",
+      kind: payload.kind,
+      summary: isOrder
+        ? {
+            quantity: payload.quantity,
+            totalPriceCents: 1400 * payload.quantity,
+            currency: "EUR",
+          }
+        : null,
+    }),
   });
 });
 page.on("pageerror", (e) => errors.push(e.message));
@@ -92,6 +104,11 @@ try {
   );
   const displayedPrice = await page.locator(".product-price strong").textContent();
   assert.match(displayedPrice ?? "", /^\d+\.\d{2} €$/, "Product price should be visible");
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    displayedPrice?.trim(),
+    "The order summary should be visible immediately for the single product",
+  );
   assert.ok(
     (await page.locator(".product-price small").textContent())?.includes(
       "не е онлайн плащане",
@@ -164,10 +181,33 @@ try {
     await page.locator("#order-product").inputValue(),
     "decucare-150",
   );
+  assert.ok(await page.locator(".order-summary").isVisible());
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    "14.00 €",
+  );
+  await page
+    .locator(".order-summary")
+    .screenshot({ caret: "initial", path: "test-results/desktop-order-summary.png" });
   await page.getByRole("button", { name: "Увеличи количеството" }).click();
+  assert.equal(await page.locator("#order-quantity").inputValue(), "2");
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    "28.00 €",
+  );
+  await page.locator("#order-quantity").fill("3");
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    "42.00 €",
+  );
+  await page.getByRole("button", { name: "Намали количеството" }).click();
   assert.equal(await page.locator("#order-quantity").inputValue(), "2");
   await page.getByRole("button", { name: "Намали количеството" }).click();
   assert.equal(await page.locator("#order-quantity").inputValue(), "1");
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    "14.00 €",
+  );
   await page.locator("#customer-name").fill("Тест Потребител");
   await page.locator("#customer-email").fill("test@example.com");
   await page.locator("#customer-phone").fill("+359881234567");
@@ -178,6 +218,9 @@ try {
     (await page.locator(".form-result-success").innerText()).includes(
       "DC-TEST-1001",
     ),
+  );
+  assert.ok(
+    (await page.getByTestId("success-total").innerText()).includes("14.00 €"),
   );
   assert.equal(orderPayloads.length, 1);
   assert.equal(orderPayloads[0].kind, "order");
@@ -192,6 +235,7 @@ try {
   );
   await page.getByRole("button", { name: "Въпрос", exact: true }).click();
   assert.equal(await page.locator("#order-quantity").count(), 0);
+  assert.equal(await page.locator(".order-summary").count(), 0);
   assert.equal(
     await page.locator("#customer-message").getAttribute("required"),
     "",
@@ -220,6 +264,10 @@ try {
   for (const width of [320, 375, 390, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(baseURL, { waitUntil: "networkidle" });
+    await page
+      .getByRole("button", { name: "Поръчай DECUCARE", exact: true })
+      .click();
+    await page.getByTestId("order-total").waitFor();
     const overflow = await page.evaluate(() => ({
       screen: window.innerWidth,
       document: document.documentElement.scrollWidth,
@@ -260,6 +308,13 @@ try {
     await page.locator("#order-product").inputValue(),
     "decucare-150",
   );
+  assert.equal(
+    (await page.getByTestId("order-total").innerText()).trim(),
+    "14.00 €",
+  );
+  await page
+    .locator(".order-summary")
+    .screenshot({ caret: "initial", path: "test-results/mobile-order-summary.png" });
   await page
     .locator(".form-card")
     .screenshot({ caret: "initial", path: "test-results/mobile-form.png" });
@@ -286,7 +341,7 @@ try {
     "No unexpected personal-data submissions",
   );
   console.log(
-    "PASS: owner photos/logo, no order-button arrows, sections, images, quantity, preselection, mocked order/question submission, disclosures, mobile navigation, privacy.",
+    "PASS: owner photos/logo, no order-button arrows, sections, images, quantity, live order total, preselection, mocked order/question submission, disclosures, mobile navigation, privacy.",
   );
   console.log(
     "Accessibility violation counts:",

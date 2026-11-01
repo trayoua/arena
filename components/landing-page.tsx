@@ -47,7 +47,7 @@ function SectionLabel({
 }
 
 export function LandingPage({ product }: { product: ProductInfo }) {
-  const [selectedProduct, setSelectedProduct] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(product.id);
   const [intent, setIntent] = useState<Intent>("order");
 
   function selectProduct() {

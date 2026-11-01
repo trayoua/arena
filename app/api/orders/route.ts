@@ -99,22 +99,33 @@ export async function POST(request: Request) {
   const { data: created, error } = await supabase
     .from("orders")
     .insert(insert)
-    .select("id,reference,kind")
+    .select("id,reference,kind,quantity,total_price_cents,currency")
     .single();
 
   if (error) {
     if (error.code === "23505") {
-      const { data: existing, error: existingError } = await supabase
-        .from("orders")
-        .select("id,reference,kind")
-        .eq("idempotency_key", data.idempotencyKey)
-        .maybeSingle();
+        const { data: existing, error: existingError } = await supabase
+          .from("orders")
+          .select("id,reference,kind,quantity,total_price_cents,currency")
+          .eq("idempotency_key", data.idempotencyKey)
+          .maybeSingle();
       if (!existingError && existing) {
         const emails = await dispatchOrderEmails(existing.id).catch((emailError) => {
           console.error("Duplicate order email retry failed", emailError);
           return null;
         });
-        return NextResponse.json({ ok: true, reference: existing.reference, kind: existing.kind, duplicate: true, emails });
+        return NextResponse.json({
+          ok: true,
+          reference: existing.reference,
+          kind: existing.kind,
+          duplicate: true,
+          emails,
+          summary: {
+            quantity: existing.quantity,
+            totalPriceCents: existing.total_price_cents,
+            currency: existing.currency,
+          },
+        });
       }
     }
     console.error("Order insert error", error);
@@ -126,5 +137,15 @@ export async function POST(request: Request) {
     return null;
   });
 
-  return NextResponse.json({ ok: true, reference: created.reference, kind: created.kind, emails });
+  return NextResponse.json({
+    ok: true,
+    reference: created.reference,
+    kind: created.kind,
+    emails,
+    summary: {
+      quantity: created.quantity,
+      totalPriceCents: created.total_price_cents,
+      currency: created.currency,
+    },
+  });
 }
