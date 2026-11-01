@@ -24,7 +24,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
@@ -122,7 +122,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 2px;
@@ -147,7 +147,7 @@ textarea:focus-visible {
 .split-heading > p {
   max-width: 390px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 17px;
   padding-bottom: 6px;
 }
 .centered {
@@ -171,7 +171,7 @@ textarea:focus-visible {
   border-radius: 5px;
   background: var(--plum);
   color: white;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
   transition:
@@ -192,13 +192,13 @@ textarea:focus-visible {
   min-height: 43px;
   padding: 10px 19px;
   gap: 20px;
-  font-size: 11px;
+  font-size: 15px;
 }
 .text-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   padding-block: 8px;
   border-bottom: 1px solid #b6a6bf;
@@ -245,7 +245,7 @@ textarea:focus-visible {
   gap: 8px;
   background: #eee7f3;
   color: #634b70;
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.35px;
   text-align: center;
@@ -302,14 +302,14 @@ textarea:focus-visible {
   color: var(--plum-dark);
 }
 .brand-dot {
-  font-size: 8px;
+  font-size: 12px;
   position: absolute;
   top: 2px;
   right: -8px;
   letter-spacing: 0;
 }
 .brand-tagline {
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 3.15px;
   margin-top: 6px;
   color: var(--muted);
@@ -322,7 +322,7 @@ textarea:focus-visible {
 }
 .desktop-nav a {
   position: relative;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   padding-block: 12px;
 }
@@ -371,7 +371,7 @@ textarea:focus-visible {
   padding-block: 10px 22px;
 }
 .hero-copy .section-label {
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 2.1px;
   margin-bottom: 24px;
 }
@@ -387,7 +387,7 @@ textarea:focus-visible {
 }
 .hero-description {
   max-width: 420px;
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.95;
   color: var(--muted);
   margin-top: 27px;
@@ -409,7 +409,7 @@ textarea:focus-visible {
   gap: 18px;
   margin-top: 36px;
   color: #75687f;
-  font-size: 10px;
+  font-size: 14px;
 }
 .hero-details > span {
   display: inline-flex;
@@ -456,7 +456,7 @@ textarea:focus-visible {
   transform: rotate(9deg);
 }
 .care-seal span {
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 1.2px;
   text-align: center;
   line-height: 1.7;
@@ -482,7 +482,7 @@ textarea:focus-visible {
 }
 .hero-photo-note span {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 13px;
 }
 .hero-photo-note strong {
   font-family: var(--serif);
@@ -494,7 +494,7 @@ textarea:focus-visible {
   margin-top: 38px;
   color: #776b7c;
   text-align: right;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.15px;
 }
 .quiet-strip {
@@ -508,7 +508,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 11px;
-  font-size: 10px;
+  font-size: 14px;
   color: #76667f;
 }
 .quiet-strip svg {
@@ -543,7 +543,7 @@ textarea:focus-visible {
   border-radius: 3px;
   background: #fdfcfdf2;
   color: #705b7b;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 2px;
   z-index: 1;
 }
@@ -567,7 +567,7 @@ textarea:focus-visible {
   border-radius: 30px;
   padding: 5px 16px;
   background: #fdfcfdf2;
-  font-size: 9px;
+  font-size: 13px;
   color: #765c85;
   letter-spacing: 1px;
 }
@@ -577,7 +577,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 3px;
-  font-size: 8px;
+  font-size: 12px;
   color: #6c5b76;
 }
 .product-source a {
@@ -593,7 +593,7 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 650;
   letter-spacing: 1.2px;
   color: var(--plum);
@@ -620,12 +620,12 @@ textarea:focus-visible {
 }
 .product-subtitle {
   color: var(--plum);
-  font-size: 11px;
+  font-size: 15px;
   margin-top: 4px;
 }
 .product-description {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
   max-width: 460px;
   margin-top: 17px;
 }
@@ -640,7 +640,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 11px;
+  font-size: 15px;
 }
 .product-checks svg {
   color: #9476a2;
@@ -654,17 +654,17 @@ textarea:focus-visible {
   flex-wrap: wrap;
 }
 .product-price > span {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
 }
 .product-price strong {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--plum);
 }
 .product-price small {
   flex-basis: 100%;
-  font-size: 9px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: -9px;
 }
@@ -676,13 +676,13 @@ textarea:focus-visible {
   margin-top: 20px;
 }
 .product-actions .button {
-  font-size: 11px;
+  font-size: 15px;
   min-height: 47px;
   padding-inline: 21px;
   gap: 24px;
 }
 .product-actions .text-link {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /* An editorial information shelf, with readable native disclosure controls. */
@@ -697,7 +697,7 @@ textarea:focus-visible {
 }
 .details-intro > p:not(.section-label):not(.texture-caption) {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.95;
   max-width: 380px;
   margin-top: 23px;
@@ -725,7 +725,7 @@ textarea:focus-visible {
 }
 .texture-caption {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 8px;
 }
 .product-accordion {
@@ -742,7 +742,7 @@ textarea:focus-visible {
   min-height: 76px;
   padding-block: 19px;
   list-style: none;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
 }
 summary::-webkit-details-marker {
@@ -755,7 +755,7 @@ summary::-webkit-details-marker {
 }
 .accordion-number {
   color: #776181;
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -768,7 +768,7 @@ summary::-webkit-details-marker {
 }
 .accordion-content {
   padding: 0 4px 24px 34px;
-  font-size: 12px;
+  font-size: 16px;
   color: #74697b;
 }
 .accordion-content > p + p {
@@ -783,7 +783,7 @@ summary::-webkit-details-marker {
   margin-top: 19px;
   border-radius: 4px;
   color: #755b84;
-  font-size: 10px;
+  font-size: 14px;
 }
 .ingredient-list {
   margin: 15px 0 20px;
@@ -792,12 +792,12 @@ summary::-webkit-details-marker {
 }
 .ingredient-list dt {
   color: var(--ink);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 650;
 }
 .ingredient-list dd {
   margin: 3px 0 0;
-  font-size: 11px;
+  font-size: 15px;
 }
 .inci-details {
   border: 1px solid var(--line);
@@ -810,19 +810,19 @@ summary::-webkit-details-marker {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  font-size: 11px;
+  font-size: 15px;
   color: var(--plum);
 }
 .inci-details[open] summary svg {
   transform: rotate(90deg);
 }
 .inci-details p {
-  font-size: 10px;
+  font-size: 14px;
   overflow-wrap: anywhere;
   margin-top: 14px;
 }
 .small-note {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 13px;
 }
 .usage-list {
@@ -846,7 +846,7 @@ summary::-webkit-details-marker {
   gap: 15px;
   padding-block: 8px;
   border-bottom: 1px solid var(--line);
-  font-size: 11px;
+  font-size: 15px;
 }
 .spec-list dd {
   margin: 0;
@@ -860,7 +860,7 @@ summary::-webkit-details-marker {
   gap: 12px;
   margin-top: 22px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 13px;
 }
 .sources-note > div {
   display: flex;
@@ -931,12 +931,12 @@ summary::-webkit-details-marker {
   margin-bottom: 10px;
 }
 .benefit-card p {
-  font-size: 12px;
+  font-size: 16px;
   color: #6c5876;
   max-width: 285px;
 }
 .benefits-note {
-  font-size: 10px;
+  font-size: 14px;
   color: #6b5675;
   margin-top: 30px;
   padding-top: 18px;
@@ -948,7 +948,7 @@ summary::-webkit-details-marker {
   background: var(--white);
 }
 .example-badge {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.2px;
   font-weight: 650;
   color: #7c608d;
@@ -979,7 +979,7 @@ summary::-webkit-details-marker {
   margin-bottom: 20px;
 }
 .review-top > span {
-  font-size: 8px;
+  font-size: 12px;
   color: #806d8b;
 }
 .review-card h3 {
@@ -990,7 +990,7 @@ summary::-webkit-details-marker {
   margin-bottom: 12px;
 }
 .review-card > p {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.95;
   color: var(--muted);
   margin-bottom: 25px;
@@ -1020,16 +1020,16 @@ summary::-webkit-details-marker {
   flex-direction: column;
 }
 .review-author strong {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 .review-author div span {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
 }
 .reviews-note {
   margin-top: 22px;
-  font-size: 11px;
+  font-size: 15px;
   color: var(--muted);
 }
 
@@ -1076,7 +1076,7 @@ summary::-webkit-details-marker {
 }
 .order-copy > p:not(.section-label) {
   color: #e0d2e6;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.95;
   max-width: 350px;
   margin-top: 24px;
@@ -1102,15 +1102,15 @@ summary::-webkit-details-marker {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 2px;
 }
 .order-steps strong {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 550;
 }
 .order-steps p {
-  font-size: 10px;
+  font-size: 14px;
   color: #d6c6df;
   margin-top: 2px;
 }
@@ -1125,7 +1125,7 @@ summary::-webkit-details-marker {
 }
 .order-contact strong {
   display: block;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 500;
 }
 .order-contact button {
@@ -1134,7 +1134,7 @@ summary::-webkit-details-marker {
   gap: 7px;
   color: #e0cde9;
   background: none;
-  font-size: 10px;
+  font-size: 14px;
   padding: 5px 0;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -1163,7 +1163,7 @@ summary::-webkit-details-marker {
   border-radius: 3px;
   background: transparent;
   color: #6e587c;
-  font-size: 11px;
+  font-size: 15px;
   transition:
     background 0.2s,
     color 0.2s;
@@ -1185,7 +1185,7 @@ summary::-webkit-details-marker {
   letter-spacing: -0.5px;
 }
 .form-heading p {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 7px;
   color: var(--muted);
 }
@@ -1198,7 +1198,7 @@ summary::-webkit-details-marker {
   border: 1px solid #e8ddee;
   border-radius: 4px;
   padding: 10px 12px;
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.7;
   margin-bottom: 21px;
 }
@@ -1218,7 +1218,7 @@ summary::-webkit-details-marker {
   position: relative;
 }
 .field label {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   margin-bottom: 6px;
 }
@@ -1226,7 +1226,7 @@ summary::-webkit-details-marker {
   color: var(--plum);
 }
 .field label small {
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 400;
   color: var(--muted);
 }
@@ -1240,7 +1240,7 @@ summary::-webkit-details-marker {
   background: #fff;
   color: var(--ink);
   padding: 11px 12px;
-  font-size: 11px;
+  font-size: 15px;
   min-height: 43px;
   transition:
     border-color 0.2s,
@@ -1275,7 +1275,7 @@ summary::-webkit-details-marker {
   position: absolute;
   bottom: 5px;
   right: 10px;
-  font-size: 8px;
+  font-size: 12px;
   color: #72607d;
   pointer-events: none;
   background: #fff;
@@ -1320,7 +1320,7 @@ summary::-webkit-details-marker {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 9px;
+  font-size: 13px;
   color: #64775a;
   margin: -7px 0 15px;
 }
@@ -1328,7 +1328,7 @@ summary::-webkit-details-marker {
   display: flex;
   align-items: flex-start;
   gap: 9px;
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.85;
   color: #786c80;
   margin: 3px 0 20px;
@@ -1349,12 +1349,12 @@ summary::-webkit-details-marker {
 .form-submit {
   width: 100%;
   justify-content: center;
-  font-size: 11px;
+  font-size: 15px;
   min-height: 47px;
 }
 .form-footnote {
   text-align: center;
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 11px;
 }
@@ -1368,10 +1368,10 @@ summary::-webkit-details-marker {
   border: 1px solid #d9c6e5;
   border-radius: 4px;
   color: #674676;
-  font-size: 10px;
+  font-size: 14px;
 }
 .preview-result strong {
-  font-size: 11px;
+  font-size: 15px;
 }
 .preview-result p {
   margin-top: 4px;
@@ -1427,7 +1427,7 @@ summary::-webkit-details-marker {
   color: #6d5779;
 }
 .retailer-note {
-  font-size: 8px;
+  font-size: 12px;
   color: #75617f;
   margin-top: 5px;
   letter-spacing: 0.2px;
@@ -1466,7 +1466,7 @@ summary::-webkit-details-marker {
   font-weight: 600;
 }
 .retailers-note {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
   max-width: 750px;
   margin: 23px auto 0;
@@ -1489,7 +1489,7 @@ summary::-webkit-details-marker {
 }
 .footer-brand > p {
   margin-top: 17px;
-  font-size: 11px;
+  font-size: 15px;
   color: #6c5977;
 }
 .footer-navigation,
@@ -1501,7 +1501,7 @@ summary::-webkit-details-marker {
 }
 .footer-navigation > span,
 .footer-social > span {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.3px;
   font-weight: 700;
   color: #796184;
@@ -1511,7 +1511,7 @@ summary::-webkit-details-marker {
   display: inline-flex;
   gap: 5px;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
   color: #6f5e7a;
 }
 .footer-navigation > a:hover,
@@ -1520,7 +1520,7 @@ summary::-webkit-details-marker {
   text-underline-offset: 4px;
 }
 .footer-placeholder {
-  font-size: 10px;
+  font-size: 14px;
   color: #6c5977;
 }
 .social-placeholder {
@@ -1530,10 +1530,10 @@ summary::-webkit-details-marker {
   color: #70577e;
 }
 .social-placeholder p {
-  font-size: 10px;
+  font-size: 14px;
 }
 .social-placeholder small {
-  font-size: 9px;
+  font-size: 13px;
   color: #6c5977;
 }
 .back-top {
@@ -1541,7 +1541,7 @@ summary::-webkit-details-marker {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 9px;
+  font-size: 13px;
   color: #70577e;
 }
 .footer-bottom {
@@ -1550,7 +1550,7 @@ summary::-webkit-details-marker {
   gap: 27px;
   border-top: 1px solid #ded3e5;
   padding-block: 20px 13px;
-  font-size: 9px;
+  font-size: 13px;
   color: #6b5677;
 }
 .footer-bottom > span {
@@ -1560,7 +1560,7 @@ summary::-webkit-details-marker {
   gap: 5px;
 }
 .footer-preview {
-  font-size: 9px;
+  font-size: 13px;
   color: #6b5677;
   padding-bottom: 18px;
 }
@@ -1585,7 +1585,7 @@ summary::-webkit-details-marker {
 }
 .legal-updated {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
 }
 .legal-notice {
   display: flex;
@@ -1597,7 +1597,7 @@ summary::-webkit-details-marker {
   border-radius: 5px;
   margin-block: 30px;
   color: #6e4d7f;
-  font-size: 13px;
+  font-size: 17px;
 }
 .legal-container h2 {
   font-family: var(--sans);
@@ -1609,7 +1609,7 @@ summary::-webkit-details-marker {
 }
 .legal-container > p:not(.section-label):not(.legal-updated) {
   color: #75667e;
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.95;
 }
 .legal-container > .button {
@@ -1641,10 +1641,10 @@ summary::-webkit-details-marker {
   .hero-actions .button {
     padding-inline: 18px;
     gap: 14px;
-    font-size: 11px;
+    font-size: 15px;
   }
   .hero-actions .text-link {
-    font-size: 10px;
+    font-size: 14px;
   }
   .hero-photo-note {
     left: -19px;
@@ -1700,19 +1700,19 @@ summary::-webkit-details-marker {
     letter-spacing: 2.5px;
   }
   .brand-tagline {
-    font-size: 6px;
+    font-size: 10px;
     letter-spacing: 2.65px;
   }
   .desktop-nav {
     gap: 23px;
   }
   .desktop-nav a {
-    font-size: 11px;
+    font-size: 15px;
   }
   .header-order {
     padding-inline: 14px;
     gap: 10px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .hero-grid {
     gap: 35px;
@@ -1723,17 +1723,17 @@ summary::-webkit-details-marker {
     letter-spacing: -2px;
   }
   .hero-description {
-    font-size: 12px;
+    font-size: 16px;
   }
   .hero-actions {
     gap: 10px;
   }
   .hero-actions .text-link {
-    font-size: 10px;
+    font-size: 14px;
   }
   .hero-details {
     gap: 12px;
-    font-size: 9px;
+    font-size: 13px;
     margin-top: 27px;
   }
   .hero-photo {
@@ -1745,7 +1745,7 @@ summary::-webkit-details-marker {
     height: 84px;
   }
   .care-seal span {
-    font-size: 6px;
+    font-size: 10px;
   }
   .hero-photo-note {
     bottom: -20px;
@@ -1756,21 +1756,21 @@ summary::-webkit-details-marker {
     font-size: 16px;
   }
   .hero-photo-note span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .image-disclaimer {
-    font-size: 10px;
+    font-size: 14px;
   }
   .quiet-strip {
     gap: 12px;
   }
   .quiet-strip span {
-    font-size: 8px;
+    font-size: 12px;
     gap: 8px;
   }
   .split-heading > p {
     max-width: 290px;
-    font-size: 11px;
+    font-size: 15px;
   }
   .product-card {
     grid-template-columns: 0.85fr 1.15fr;
@@ -1789,14 +1789,14 @@ summary::-webkit-details-marker {
     grid-template-columns: 0.85fr 1.15fr;
   }
   .product-accordion > details > summary {
-    font-size: 12px;
+    font-size: 16px;
   }
   .product-accordion > details > summary > span {
     gap: 12px;
   }
   .accordion-content {
     padding-left: 25px;
-    font-size: 11px;
+    font-size: 15px;
   }
   .sources-note {
     align-items: flex-start;
@@ -1820,7 +1820,7 @@ summary::-webkit-details-marker {
     font-size: 25px;
   }
   .benefit-card p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .reviews-grid {
     gap: 14px;
@@ -1832,7 +1832,7 @@ summary::-webkit-details-marker {
     font-size: 23px;
   }
   .review-card > p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .order-grid {
     gap: 30px;
@@ -1884,7 +1884,7 @@ summary::-webkit-details-marker {
     padding-block: 65px;
   }
   .preview-ribbon {
-    font-size: 8px;
+    font-size: 12px;
     gap: 5px;
     min-height: 29px;
     letter-spacing: 0;
@@ -1912,7 +1912,7 @@ summary::-webkit-details-marker {
   .header-order {
     margin-left: auto;
     min-height: 39px;
-    font-size: 9px;
+    font-size: 13px;
     padding: 9px 12px;
     gap: 8px;
   }
@@ -1938,7 +1938,7 @@ summary::-webkit-details-marker {
     justify-content: space-between;
     align-items: center;
     padding: 13px 7px;
-    font-size: 13px;
+    font-size: 17px;
     border-bottom: 1px solid var(--line);
   }
   .mobile-nav a:last-child {
@@ -1956,7 +1956,7 @@ summary::-webkit-details-marker {
     padding: 0;
   }
   .hero-copy .section-label {
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 1.8px;
     margin-bottom: 22px;
   }
@@ -1966,7 +1966,7 @@ summary::-webkit-details-marker {
     letter-spacing: -2px;
   }
   .hero-description {
-    font-size: 12px;
+    font-size: 16px;
     max-width: 440px;
     margin-top: 23px;
   }
@@ -1977,15 +1977,15 @@ summary::-webkit-details-marker {
   .hero-actions .button {
     min-height: 49px;
     padding-inline: 21px;
-    font-size: 11px;
+    font-size: 15px;
     gap: 20px;
   }
   .hero-actions .text-link {
-    font-size: 10px;
+    font-size: 14px;
   }
   .hero-details {
     margin-top: 26px;
-    font-size: 9px;
+    font-size: 13px;
     gap: 17px;
   }
   .hero-visual {
@@ -2007,7 +2007,7 @@ summary::-webkit-details-marker {
     height: 91px;
   }
   .care-seal span {
-    font-size: 6px;
+    font-size: 10px;
   }
   .hero-photo-note {
     left: -1px;
@@ -2018,10 +2018,10 @@ summary::-webkit-details-marker {
     font-size: 19px;
   }
   .hero-photo-note span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .image-disclaimer {
-    font-size: 10px;
+    font-size: 14px;
     margin-top: 9px;
   }
   .quiet-strip {
@@ -2032,11 +2032,11 @@ summary::-webkit-details-marker {
     padding: 22px 5px;
   }
   .quiet-strip span {
-    font-size: 10px;
+    font-size: 14px;
     gap: 11px;
   }
   .section-label {
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 1.7px;
     margin-bottom: 18px;
   }
@@ -2050,7 +2050,7 @@ summary::-webkit-details-marker {
   .split-heading > p {
     max-width: 100%;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 16px;
   }
   .desktop-break {
     display: none;
@@ -2071,7 +2071,7 @@ summary::-webkit-details-marker {
   .product-volume {
     left: 20px;
     bottom: 18px;
-    font-size: 8px;
+    font-size: 12px;
     padding: 3px 13px;
   }
   .product-content {
@@ -2081,7 +2081,7 @@ summary::-webkit-details-marker {
     font-size: 40px;
   }
   .product-description {
-    font-size: 12px;
+    font-size: 16px;
   }
   .product-price {
     gap: 11px;
@@ -2093,7 +2093,7 @@ summary::-webkit-details-marker {
     min-height: 48px;
   }
   .product-actions .text-link {
-    font-size: 10px;
+    font-size: 14px;
   }
   .details-grid {
     grid-template-columns: 1fr;
@@ -2101,7 +2101,7 @@ summary::-webkit-details-marker {
   }
   .details-intro > p:not(.section-label):not(.texture-caption) {
     max-width: 100%;
-    font-size: 12px;
+    font-size: 16px;
   }
   .texture-photo {
     aspect-ratio: 1.55;
@@ -2113,23 +2113,23 @@ summary::-webkit-details-marker {
     left: 20px;
   }
   .texture-caption {
-    font-size: 10px;
+    font-size: 14px;
   }
   .product-accordion > details > summary {
     min-height: 70px;
-    font-size: 12px;
+    font-size: 16px;
   }
   .product-accordion > details > summary > span {
     gap: 17px;
   }
   .accordion-content {
-    font-size: 12px;
+    font-size: 16px;
     padding-left: 30px;
   }
   .sources-note {
     flex-direction: row;
     flex-wrap: wrap;
-    font-size: 8px;
+    font-size: 12px;
     gap: 12px;
   }
   .benefits-section {
@@ -2165,10 +2165,10 @@ summary::-webkit-details-marker {
   }
   .benefit-card p {
     max-width: 100%;
-    font-size: 12px;
+    font-size: 16px;
   }
   .benefits-note {
-    font-size: 10px;
+    font-size: 14px;
     margin-top: 24px;
   }
   .example-badge {
@@ -2190,16 +2190,16 @@ summary::-webkit-details-marker {
     font-size: 28px;
   }
   .review-card > p {
-    font-size: 12px;
+    font-size: 16px;
   }
   .review-author strong {
-    font-size: 11px;
+    font-size: 15px;
   }
   .review-author div span {
-    font-size: 9px;
+    font-size: 13px;
   }
   .reviews-note {
-    font-size: 10px;
+    font-size: 14px;
   }
   .order-grid {
     grid-template-columns: 1fr;
@@ -2213,7 +2213,7 @@ summary::-webkit-details-marker {
   }
   .order-copy > p:not(.section-label) {
     max-width: 100%;
-    font-size: 12px;
+    font-size: 16px;
   }
   .order-steps {
     margin-block: 27px;
@@ -2230,13 +2230,13 @@ summary::-webkit-details-marker {
   }
   .form-tabs button {
     min-height: 43px;
-    font-size: 12px;
+    font-size: 16px;
   }
   .form-heading p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .field label {
-    font-size: 11px;
+    font-size: 15px;
   }
   .field input,
   .field select,
@@ -2246,7 +2246,7 @@ summary::-webkit-details-marker {
   }
   .field input::placeholder,
   .field textarea::placeholder {
-    font-size: 12px;
+    font-size: 16px;
   }
   .field select {
     font-size: 16px;
@@ -2276,27 +2276,27 @@ summary::-webkit-details-marker {
     width: 40px;
   }
   .consent-label {
-    font-size: 10px;
+    font-size: 14px;
   }
   .consent-label input {
     width: 17px;
     height: 17px;
   }
   .form-submit {
-    font-size: 12px;
+    font-size: 16px;
     min-height: 49px;
   }
   .form-preview-note {
-    font-size: 10px;
+    font-size: 14px;
   }
   .form-footnote {
-    font-size: 9px;
+    font-size: 13px;
   }
   .retailers-section h2 {
     font-size: 43px;
   }
   .centered > p:not(.section-label) {
-    font-size: 12px;
+    font-size: 16px;
   }
   .retailer-grid {
     grid-template-columns: 1fr 1fr;
@@ -2306,7 +2306,7 @@ summary::-webkit-details-marker {
     min-height: 106px;
   }
   .retailers-note {
-    font-size: 10px;
+    font-size: 14px;
     text-align: left;
   }
   .site-footer {
@@ -2324,11 +2324,11 @@ summary::-webkit-details-marker {
   }
   .footer-navigation > span,
   .footer-social > span {
-    font-size: 7px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
   .footer-navigation > a {
-    font-size: 10px;
+    font-size: 14px;
   }
   .footer-social {
     grid-column: 1 / -1;
@@ -2349,7 +2349,7 @@ summary::-webkit-details-marker {
   .footer-bottom {
     flex-wrap: wrap;
     gap: 10px 20px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .footer-bottom > p {
     flex-basis: 100%;
@@ -2358,7 +2358,7 @@ summary::-webkit-details-marker {
     margin-left: auto;
   }
   .footer-preview {
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1.8;
   }
   .legal-page {
@@ -2380,14 +2380,14 @@ summary::-webkit-details-marker {
     letter-spacing: 2px;
   }
   .brand-tagline {
-    font-size: 5.5px;
+    font-size: 10px;
     letter-spacing: 2.1px;
   }
   .header-inner {
     gap: 9px;
   }
   .header-order {
-    font-size: 8px;
+    font-size: 12px;
     padding-inline: 10px;
     gap: 5px;
   }
@@ -2395,7 +2395,7 @@ summary::-webkit-details-marker {
     width: 13px;
   }
   .preview-ribbon {
-    font-size: 7px;
+    font-size: 11px;
   }
   .hero h1 {
     font-size: 55px;
@@ -2406,10 +2406,10 @@ summary::-webkit-details-marker {
   .hero-actions .button {
     padding-inline: 16px;
     gap: 14px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .hero-actions .text-link {
-    font-size: 9px;
+    font-size: 13px;
   }
   .product-content {
     padding-inline: 21px;
@@ -2469,11 +2469,11 @@ summary::-webkit-details-marker {
   padding: 14px;
   margin-top: 15px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.7;
 }
 .form-result strong {
-  font-size: 11px;
+  font-size: 15px;
 }
 .form-result p {
   margin-top: 4px;
@@ -2536,10 +2536,10 @@ summary::-webkit-details-marker {
 }
 .admin-login-card p {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
 }
 .admin-login-card label {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 650;
   margin-top: 8px;
 }
@@ -2547,7 +2547,7 @@ summary::-webkit-details-marker {
   border: 1px solid #ded5e4;
   border-radius: 4px;
   padding: 12px;
-  font-size: 13px;
+  font-size: 17px;
 }
 .admin-login-card .button {
   justify-content: center;
@@ -2559,7 +2559,7 @@ summary::-webkit-details-marker {
   border: 1px solid #e8c9cd;
   border-radius: 4px;
   padding: 10px 12px;
-  font-size: 12px;
+  font-size: 16px;
 }
 .admin-page {
   min-height: 100vh;
@@ -2588,7 +2588,7 @@ summary::-webkit-details-marker {
   flex-wrap: wrap;
 }
 .admin-header-actions .button {
-  font-size: 11px;
+  font-size: 15px;
   min-height: 40px;
   padding-inline: 16px;
 }
@@ -2607,7 +2607,7 @@ summary::-webkit-details-marker {
 }
 .admin-note {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.7;
   margin-bottom: 16px;
 }
@@ -2621,16 +2621,16 @@ summary::-webkit-details-marker {
 }
 .admin-product-row strong {
   display: block;
-  font-size: 13px;
+  font-size: 17px;
 }
 .admin-product-row span {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 15px;
   margin-top: 4px;
 }
 .admin-price-field span {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   margin-bottom: 5px;
 }
@@ -2639,10 +2639,10 @@ summary::-webkit-details-marker {
   border: 1px solid #ded5e4;
   border-radius: 4px;
   padding: 10px;
-  font-size: 12px;
+  font-size: 16px;
 }
 .admin-product-row .button {
-  font-size: 11px;
+  font-size: 15px;
   min-height: 40px;
   padding-inline: 16px;
 }
@@ -2665,18 +2665,18 @@ summary::-webkit-details-marker {
 }
 .admin-order-top strong {
   display: block;
-  font-size: 14px;
+  font-size: 17px;
 }
 .admin-order-top span {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 15px;
   margin-top: 3px;
 }
 .admin-status {
   border-radius: 999px;
   padding: 5px 10px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   white-space: nowrap;
 }
@@ -2703,14 +2703,14 @@ summary::-webkit-details-marker {
   margin-bottom: 14px;
 }
 .admin-order-details dt {
-  font-size: 9px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--muted);
   margin-bottom: 3px;
 }
 .admin-order-details dd {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
@@ -2733,11 +2733,11 @@ summary::-webkit-details-marker {
   border: 1px solid #ded5e4;
   border-radius: 4px;
   padding: 8px 10px;
-  font-size: 11px;
+  font-size: 15px;
   background: #fff;
 }
 .admin-order-actions span {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
 }
 .admin-email-row {
@@ -2750,7 +2750,7 @@ summary::-webkit-details-marker {
 .admin-email-badge {
   border-radius: 999px;
   padding: 4px 9px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   background: #f4f1f7;
   color: #5f5770;
@@ -2774,13 +2774,13 @@ summary::-webkit-details-marker {
 }
 .admin-email-error {
   flex-basis: 100%;
-  font-size: 10px;
+  font-size: 14px;
   color: #8a3a4a;
   overflow-wrap: anywhere;
 }
 .button-tiny {
   padding: 8px 12px;
-  font-size: 11px;
+  font-size: 15px;
 }
 @media (max-width: 760px) {
   .admin-header {

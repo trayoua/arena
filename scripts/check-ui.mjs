@@ -98,6 +98,24 @@ try {
     ),
     "Price note should clarify that the request is not an online payment",
   );
+  const readableTextSizes = await page.evaluate(() => {
+    const size = (selector) =>
+      parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
+    return {
+      hero: size(".hero-description"),
+      product: size(".product-description"),
+      review: size(".review-card > p"),
+      fieldLabel: size(".field label"),
+      consent: size(".consent-label"),
+      footer: size(".footer-brand > p"),
+    };
+  });
+  assert.ok(readableTextSizes.hero >= 16, "Hero body text should be readable");
+  assert.ok(readableTextSizes.product >= 16, "Product body text should be readable");
+  assert.ok(readableTextSizes.review >= 15, "Review text should be readable");
+  assert.ok(readableTextSizes.fieldLabel >= 14, "Form labels should be readable");
+  assert.ok(readableTextSizes.consent >= 13, "Consent text should be readable");
+  assert.ok(readableTextSizes.footer >= 14, "Footer text should be readable");
   // Next.js lazy-loads below-the-fold photographs; visit each before checking it.
   for (const image of await page.locator("img").all()) {
     await image.scrollIntoViewIfNeeded();
