@@ -121,6 +121,10 @@ try {
   assert.ok((await page.locator(".site-footer").innerText()).includes("„Гален Фарма“ ООД за „А БРАНДС“ ЕООД"));
   assert.equal((await page.locator(".order-summary-heading span").innerText()).trim(), "Наложен платеж");
   assert.ok(await page.locator(".site-header .brand-mark").isVisible());
+  assert.equal(
+    await page.locator('.desktop-nav a[href="#retailers"]').innerText(),
+    "Партньори",
+  );
   assert.equal(await page.locator(".header-order svg").count(), 0);
   assert.equal(await page.locator(".product-actions .button svg").count(), 0);
   assert.equal(await page.locator(".form-submit svg").count(), 0);
@@ -329,6 +333,12 @@ try {
   });
   await page.getByRole("button", { name: "Отвори менюто" }).click();
   assert.ok(await page.locator("#mobile-navigation").isVisible());
+  assert.ok(
+    await page
+      .locator("#mobile-navigation")
+      .getByRole("link", { name: "Партньори" })
+      .isVisible(),
+  );
   await page
     .locator("#mobile-navigation")
     .getByRole("link", { name: "Предимства" })

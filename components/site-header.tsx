@@ -8,6 +8,7 @@ const links = [
   { href: "#decucare", label: "Decucare" },
   { href: "#benefits", label: "Предимства" },
   { href: "#reviews", label: "Отзиви" },
+  { href: "#retailers", label: "Партньори" },
 ];
 
 export function Brand({ light = false }: { light?: boolean }) {
