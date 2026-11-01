@@ -19,7 +19,7 @@ export const product: ProductInfo = {
   id: "decucare-150",
   name: "DECUCARE крем",
   volume: "150 мл",
-  price: 14,
+  price: 13.9,
   currency: "EUR",
   description:
     "Регенериращ и възстановяващ крем за специална грижа при чувствителна, раздразнена или увредена кожа.",

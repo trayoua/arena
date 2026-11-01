@@ -49,7 +49,7 @@ await context.route("**/api/orders", async (route) => {
       summary: isOrder
         ? {
             quantity: payload.quantity,
-            totalPriceCents: 1400 * payload.quantity,
+            totalPriceCents: 1390 * payload.quantity,
             currency: "EUR",
           }
         : null,
@@ -184,7 +184,7 @@ try {
   assert.ok(await page.locator(".order-summary").isVisible());
   assert.equal(
     (await page.getByTestId("order-total").innerText()).trim(),
-    "14.00 €",
+    "13.90 €",
   );
   await page
     .locator(".order-summary")
@@ -193,12 +193,12 @@ try {
   assert.equal(await page.locator("#order-quantity").inputValue(), "2");
   assert.equal(
     (await page.getByTestId("order-total").innerText()).trim(),
-    "28.00 €",
+    "27.80 €",
   );
   await page.locator("#order-quantity").fill("3");
   assert.equal(
     (await page.getByTestId("order-total").innerText()).trim(),
-    "42.00 €",
+    "41.70 €",
   );
   await page.getByRole("button", { name: "Намали количеството" }).click();
   assert.equal(await page.locator("#order-quantity").inputValue(), "2");
@@ -206,7 +206,7 @@ try {
   assert.equal(await page.locator("#order-quantity").inputValue(), "1");
   assert.equal(
     (await page.getByTestId("order-total").innerText()).trim(),
-    "14.00 €",
+    "13.90 €",
   );
   await page.locator("#customer-name").fill("Тест Потребител");
   await page.locator("#customer-email").fill("test@example.com");
@@ -220,7 +220,7 @@ try {
     ),
   );
   assert.ok(
-    (await page.getByTestId("success-total").innerText()).includes("14.00 €"),
+    (await page.getByTestId("success-total").innerText()).includes("13.90 €"),
   );
   assert.equal(orderPayloads.length, 1);
   assert.equal(orderPayloads[0].kind, "order");
@@ -310,7 +310,7 @@ try {
   );
   assert.equal(
     (await page.getByTestId("order-total").innerText()).trim(),
-    "14.00 €",
+    "13.90 €",
   );
   await page
     .locator(".order-summary")
