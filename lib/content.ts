@@ -119,6 +119,12 @@ export const retailers = [
     url: "https://aptekamadzharov.bg/product/decucare-krem-150-ml",
     note: "Аптека Маджаров",
   },
+  {
+    name: "eMAG",
+    className: "emag",
+    url: "https://www.emag.bg/brands/brand/decucare",
+    note: "Онлайн магазин",
+  },
 ];
 
 export const reviews = [

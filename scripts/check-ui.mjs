@@ -95,7 +95,10 @@ try {
     assert.ok(reviewText.includes(expected), `Missing review content: ${expected}`);
   }
   assert.ok(!/ПРИМЕРНИ|Примерен текст|Илюстративен профил/.test(reviewText));
-  assert.equal(await page.locator(".retailer-card").count(), 7);
+  assert.equal(await page.locator(".retailer-card").count(), 8);
+  const emagLink = page.locator('a[href="https://www.emag.bg/brands/brand/decucare"]');
+  assert.equal(await emagLink.count(), 1);
+  assert.ok((await emagLink.innerText()).includes("eMAG"));
   const facebookLinks = page.locator('a[href="https://www.facebook.com/profile.php?id=61583186613579"]');
   assert.equal(await facebookLinks.count(), 1);
   assert.equal(await page.locator(".social-link").count(), 1);
