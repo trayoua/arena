@@ -2497,7 +2497,13 @@ summary::-webkit-details-marker {
     gap: 12px;
   }
   .retailer-card {
-    min-height: 106px;
+    min-height: 110px;
+    padding: 18px 10px 14px;
+  }
+  /* Use one visual scale for every wordmark so the partner cards stay balanced on phones. */
+  .retailer-card .retailer-wordmark {
+    font-size: clamp(22px, 6.4vw, 25px);
+    line-height: 1.2;
   }
   .retailers-note {
     font-size: 14px;

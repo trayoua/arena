@@ -331,6 +331,31 @@ try {
     caret: "initial",
     path: "test-results/mobile-hero.png",
   });
+  await page.locator("#retailers").scrollIntoViewIfNeeded();
+  await page.locator("#retailers").screenshot({
+    caret: "initial",
+    path: "test-results/mobile-retailers.png",
+  });
+  const retailerMetrics = await page.locator(".retailer-card").evaluateAll((cards) =>
+    cards.map((card) => {
+      const wordmark = card.querySelector(".retailer-wordmark");
+      return {
+        height: card.getBoundingClientRect().height,
+        fontSize: Number.parseFloat(getComputedStyle(wordmark).fontSize),
+      };
+    }),
+  );
+  const retailerFontSizes = retailerMetrics.map((retailer) => retailer.fontSize);
+  const retailerHeights = retailerMetrics.map((retailer) => retailer.height);
+  assert.ok(
+    Math.max(...retailerFontSizes) - Math.min(...retailerFontSizes) < 0.1,
+    "Partner wordmarks should use one size on a 390px-wide phone",
+  );
+  assert.ok(
+    Math.max(...retailerHeights) - Math.min(...retailerHeights) < 0.1,
+    "Partner cards should have matching heights on a 390px-wide phone",
+  );
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await page.getByRole("button", { name: "Отвори менюто" }).click();
   assert.ok(await page.locator("#mobile-navigation").isVisible());
   assert.ok(
