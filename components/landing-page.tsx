@@ -175,9 +175,9 @@ export function LandingPage({ product }: { product: ProductInfo }) {
             <div>
               <SectionLabel>ВАШИЯТ НОВ ЕЖЕДНЕВЕН РИТУАЛ</SectionLabel>
               <h2 id="product-title">
-                Малка туба.
+                Една туба.
                 <br />
-                <em>Много внимание.</em>
+                <em>Цял ритуал.</em>
               </h2>
             </div>
             <p>
@@ -656,7 +656,14 @@ export function LandingPage({ product }: { product: ProductInfo }) {
                   size={16}
                   aria-hidden="true"
                 />
-                <span className="retailer-wordmark">{retailer.name}</span>
+                <Image
+                  className="retailer-logo"
+                  src={retailer.logo}
+                  alt=""
+                  width={240}
+                  height={80}
+                  sizes="(max-width: 760px) 132px, 190px"
+                />
                 <span className="retailer-note">{retailer.note}</span>
               </a>
             ))}

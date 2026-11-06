@@ -68,6 +68,10 @@ try {
   await page.emulateMedia({ reducedMotion: "reduce" });
   assert.equal(await page.locator("html").getAttribute("lang"), "bg");
   assert.equal(await page.locator("h1").count(), 1);
+  assert.ok(
+    (await page.locator("#product-title").innerText()).includes("Една туба.\nЦял ритуал."),
+    "The approved product heading should be shown",
+  );
   for (const id of [
     "product",
     "decucare",
@@ -96,9 +100,17 @@ try {
   }
   assert.ok(!/ПРИМЕРНИ|Примерен текст|Илюстративен профил/.test(reviewText));
   assert.equal(await page.locator(".retailer-card").count(), 8);
+  assert.equal(await page.locator(".retailer-logo").count(), 8);
+  const retailerLogoSources = await page.locator(".retailer-logo").evaluateAll((logos) =>
+    logos.map((logo) => logo.getAttribute("src") || ""),
+  );
+  assert.ok(
+    retailerLogoSources.every((source) => source.includes("%2Fimages%2Fretailers%2F")),
+    "Every retailer card should use an owner-supplied logo asset",
+  );
   const emagLink = page.locator('a[href="https://www.emag.bg/brands/brand/decucare"]');
   assert.equal(await emagLink.count(), 1);
-  assert.ok((await emagLink.innerText()).includes("eMAG"));
+  assert.ok((await emagLink.getAttribute("aria-label"))?.includes("eMAG"));
   const facebookLinks = page.locator('a[href="https://www.facebook.com/profile.php?id=61583186613579"]');
   assert.equal(await facebookLinks.count(), 1);
   assert.equal(await page.locator(".social-link").count(), 1);
@@ -338,18 +350,18 @@ try {
   });
   const retailerMetrics = await page.locator(".retailer-card").evaluateAll((cards) =>
     cards.map((card) => {
-      const wordmark = card.querySelector(".retailer-wordmark");
+      const logo = card.querySelector(".retailer-logo");
       return {
         height: card.getBoundingClientRect().height,
-        fontSize: Number.parseFloat(getComputedStyle(wordmark).fontSize),
+        logoHeight: logo.getBoundingClientRect().height,
       };
     }),
   );
-  const retailerFontSizes = retailerMetrics.map((retailer) => retailer.fontSize);
+  const retailerLogoHeights = retailerMetrics.map((retailer) => retailer.logoHeight);
   const retailerHeights = retailerMetrics.map((retailer) => retailer.height);
   assert.ok(
-    Math.max(...retailerFontSizes) - Math.min(...retailerFontSizes) < 0.1,
-    "Partner wordmarks should use one size on a 390px-wide phone",
+    Math.max(...retailerLogoHeights) - Math.min(...retailerLogoHeights) < 0.1,
+    "Partner logos should use one display height on a 390px-wide phone",
   );
   assert.ok(
     Math.max(...retailerHeights) - Math.min(...retailerHeights) < 0.1,
