@@ -116,30 +116,32 @@ export function LandingPage({ product }: { product: ProductInfo }) {
             </div>
           </div>
           <div className="hero-visual">
-            <div className="hero-photo">
-              <Image
-                src="/images/decucare-hero.webp"
-                alt="Две туби DECUCARE сред зелени листа върху светла повърхност — продуктова фотография на DECUCARE"
-                width={1500}
-                height={841}
-                priority
-                sizes="(max-width: 760px) 92vw, 46vw"
-                className="hero-image"
-              />
-            </div>
-            <div className="care-seal" aria-hidden="true">
-              <Heart size={23} strokeWidth={1.3} />
-              <span>
-                МАЛЪК РИТУАЛ
-                <br />
-                ГОЛЯМА ГРИЖА
-              </span>
-            </div>
-            <div className="hero-photo-note">
-              <Leaf size={22} strokeWidth={1.4} aria-hidden="true" />
-              <div>
-                <span>Внимание към всеки детайл</span>
-                <strong>Вашата ежедневна грижа.</strong>
+            <div className="hero-photo-frame">
+              <div className="hero-photo">
+                <Image
+                  src="/images/decucare-hero.webp"
+                  alt="Две туби DECUCARE сред зелени листа върху светла повърхност — продуктова фотография на DECUCARE"
+                  width={1500}
+                  height={841}
+                  priority
+                  sizes="(max-width: 760px) 92vw, 46vw"
+                  className="hero-image"
+                />
+              </div>
+              <div className="care-seal" aria-hidden="true">
+                <Heart size={23} strokeWidth={1.3} />
+                <span>
+                  МАЛЪК РИТУАЛ
+                  <br />
+                  ГОЛЯМА ГРИЖА
+                </span>
+              </div>
+              <div className="hero-photo-note">
+                <Leaf size={22} strokeWidth={1.4} aria-hidden="true" />
+                <div>
+                  <span>Внимание към всеки детайл</span>
+                  <strong>Вашата ежедневна грижа.</strong>
+                </div>
               </div>
             </div>
             <p className="image-disclaimer">

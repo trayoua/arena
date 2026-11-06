@@ -422,8 +422,10 @@ textarea:focus-visible {
   background: #d8cddd;
 }
 .hero-visual {
-  position: relative;
   margin: 0 10px 0 0;
+}
+.hero-photo-frame {
+  position: relative;
 }
 .hero-photo {
   overflow: hidden;
@@ -491,7 +493,8 @@ textarea:focus-visible {
   line-height: 1.5;
 }
 .image-disclaimer {
-  margin-top: 38px;
+  /* The caption follows the photo frame, leaving room for its floating note. */
+  margin-top: 52px;
   color: #776b7c;
   text-align: right;
   font-size: 14px;
@@ -2141,7 +2144,7 @@ summary::-webkit-details-marker {
   }
   .image-disclaimer {
     font-size: 14px;
-    margin-top: 9px;
+    margin-top: 46px;
   }
   .quiet-strip {
     display: grid;

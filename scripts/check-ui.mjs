@@ -133,6 +133,20 @@ try {
   assert.ok((await page.locator(".site-footer").innerText()).includes("„Гален Фарма“ ООД за „А БРАНДС“ ЕООД"));
   assert.equal((await page.locator(".order-summary-heading span").innerText()).trim(), "Наложен платеж");
   assert.ok(await page.locator(".site-header .brand-mark").isVisible());
+  const heroCaptionLayout = await page.evaluate(() => {
+    const visual = document.querySelector(".hero-visual").getBoundingClientRect();
+    const note = document.querySelector(".hero-photo-note").getBoundingClientRect();
+    const caption = document.querySelector(".image-disclaimer").getBoundingClientRect();
+    return {
+      captionAfterNote: caption.top - note.bottom,
+      captionInsideVisual: caption.left >= visual.left && caption.right <= visual.right,
+    };
+  });
+  assert.ok(
+    heroCaptionLayout.captionAfterNote >= 8,
+    "The product-photo caption must not overlap the floating photo note",
+  );
+  assert.ok(heroCaptionLayout.captionInsideVisual, "The product-photo caption must stay inside the hero visual");
   assert.equal(
     await page.locator('.desktop-nav a[href="#retailers"]').innerText(),
     "Партньори",
@@ -313,9 +327,20 @@ try {
   await page.locator(".inci-details summary").click();
   assert.ok(await page.locator(".inci-details p").isVisible());
 
-  for (const width of [320, 375, 390, 768, 1024, 1440, 1920]) {
+  for (const width of [320, 375, 390, 768, 1024, 1240, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(baseURL, { waitUntil: "networkidle" });
+    if (width === 1240) {
+      const captionGap = await page.evaluate(() => {
+        const note = document.querySelector(".hero-photo-note").getBoundingClientRect();
+        const caption = document.querySelector(".image-disclaimer").getBoundingClientRect();
+        return caption.top - note.bottom;
+      });
+      assert.ok(
+        captionGap >= 8,
+        "The product-photo caption must remain below the floating photo note at 1240px",
+      );
+    }
     await page
       .getByRole("button", { name: "Поръчай DECUCARE", exact: true })
       .click();
@@ -343,6 +368,15 @@ try {
     caret: "initial",
     path: "test-results/mobile-hero.png",
   });
+  const mobileHeroCaptionLayout = await page.evaluate(() => {
+    const note = document.querySelector(".hero-photo-note").getBoundingClientRect();
+    const caption = document.querySelector(".image-disclaimer").getBoundingClientRect();
+    return caption.top - note.bottom;
+  });
+  assert.ok(
+    mobileHeroCaptionLayout >= 8,
+    "The product-photo caption must not overlap the floating photo note on mobile",
+  );
   await page.locator("#retailers").scrollIntoViewIfNeeded();
   await page.locator("#retailers").screenshot({
     caret: "initial",
